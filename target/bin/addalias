@@ -48,6 +48,6 @@ if grep -qi "^$(escape "${EMAIL}")" "${DATABASE}" 2>/dev/null
 then
   sed -i "/${EMAIL}/s/$/,${RECIPIENT}/" "${DATABASE}"
 else
-  [[ -s ${COMMENT} ]] && { echo "${COMMENT}" >> "${DATABASE}" ; }
+  [[ -s ${COMMENT} ]] && { echo "# ${COMMENT}" >> "${DATABASE}" ; }
   echo "${EMAIL} ${RECIPIENT}" >> "${DATABASE}"
 fi
