@@ -51,7 +51,7 @@ ${RED}[${ORANGE}SUB${RED}]${ORANGE}COMMANDS${RESET}
         ${0} email ${CYAN}list${RESET}
 
     ${LBLUE}COMMAND${RESET} alias ${RED}:=${RESET}
-        ${0} alias ${CYAN}add${RESET} <EMAIL ADDRESS> <RECIPIENT>
+        ${0} alias ${CYAN}add${RESET} <EMAIL ADDRESS> <RECIPIENT> [<COMMENT>]
         ${0} alias ${CYAN}del${RESET} <EMAIL ADDRESS> <RECIPIENT>
         ${0} alias ${CYAN}list${RESET}
 
@@ -114,7 +114,7 @@ function _main
 
     ( alias )
       case ${2:-} in
-        ( add      ) shift 2 ; addalias "${1}" "${2}" ;;
+        ( add      ) shift 2 ; addalias "${1}" "${2}" "${3}";;
         ( del      ) shift 2 ; delalias "${1}" "${2}" ;;
         ( list     ) shift 2 ; listalias ;;
         ( *        ) _invalid_command "${1}" "${2}" ;;

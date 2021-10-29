@@ -35,6 +35,7 @@ function __usage
 
 EMAIL="${1}"
 RECIPIENT="${2}"
+COMMENT="${3}"
 
 [[ -z ${EMAIL} ]] && { __usage ; errex 'No alias specified' ; }
 [[ -z ${RECIPIENT} ]] && { __usage ; errex 'No recipient specified' ; }
@@ -47,5 +48,6 @@ if grep -qi "^$(escape "${EMAIL}")" "${DATABASE}" 2>/dev/null
 then
   sed -i "/${EMAIL}/s/$/,${RECIPIENT}/" "${DATABASE}"
 else
+  [[ -s ${COMMENT} ]] && { echo "${COMMENT}" >> "${DATABASE}" ; }
   echo "${EMAIL} ${RECIPIENT}" >> "${DATABASE}"
 fi
